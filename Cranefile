@@ -8,6 +8,7 @@
             "tty": true,
             "interactive": true,
             "volumes-from": ["silex_app"],
+            "link": ["silex_db:db"],
             "detach": true
         }
     },
