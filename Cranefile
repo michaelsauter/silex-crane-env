@@ -1,0 +1,34 @@
+[
+    {
+        "name": "silex_server",
+        "dockerfile": "server",
+        "image": "i_silex_server",
+        "run": {
+            "publish": ["80:80"],
+            "tty": true,
+            "interactive": true,
+            "volumes-from": ["silex_app"],
+            "detach": true
+        }
+    },
+    {
+        "name": "silex_app",
+        "dockerfile": "app",
+        "image": "i_silex_app",
+        "run": {
+            "volume": ["app/silex:/srv/www"],
+            "tty": true,
+            "interactive": true,
+            "detach": true
+        }
+    },
+    {
+        "name": "silex_db",
+        "image": "orchardup/mysql",
+        "run": {
+            "publish": ["3306:3306"],
+            "env": ["MYSQL_ROOT_PASSWORD=root", "MYSQL_DATABASE=silex", "MYSQL_USER=silex", "MYSQL_PASSWORD=silex"],
+            "detach": true
+        }
+    }
+]
