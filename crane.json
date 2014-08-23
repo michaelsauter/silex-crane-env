@@ -1,7 +1,6 @@
 {
-    "containers": [
-        {
-            "name": "silex_server",
+    "containers": {
+        "silex_server":  {
             "dockerfile": "server",
             "image": "i_silex_server",
             "run": {
@@ -13,8 +12,7 @@
                 "detach": true
             }
         },
-        {
-            "name": "silex_app",
+        "silex_app": {
             "dockerfile": "app",
             "image": "i_silex_app",
             "run": {
@@ -24,8 +22,7 @@
                 "detach": true
             }
         },
-        {
-            "name": "silex_db",
+        "silex_db": {
             "image": "orchardup/mysql",
             "run": {
                 "publish": ["3306:3306"],
@@ -33,5 +30,8 @@
                 "detach": true
             }
         }
-    ]
+    },
+    "groups": {
+        "serverandapp": ["silex_server", "silex_app"]
+    }
 }
